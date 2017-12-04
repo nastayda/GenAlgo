@@ -31,15 +31,12 @@ public class Chromosome {
         this.likelihood = likelihood;
     }
 
-    /*
-     *Calculates fitness for THIS chromosome and returns it.
-     * */
+    //Calculates fitness for THIS chromosome and returns it.
     public float  calculateFitness(){
         int a = genes[0];
         int b = genes[1];
         int c = genes[2];
         int d = genes[3];
-
         int closeness = Math.abs(  Diofant.TARGET_VALUE -  Diofant.function( a,b,c,d  )   ) ;
         Diofant.log("Closeness: "+closeness);
         return  0!=closeness  ? 1/(float)closeness : Diofant.TARGET_IS_REACHED_FLAG ;
@@ -47,9 +44,7 @@ public class Chromosome {
 
     public Chromosome mutateWithGivenLikelihood(){
         Diofant.log( "Starting mutateWithGivenLikelihood().... Diofant.MUTATION_LIKELIHOOD=="+Diofant.MUTATION_LIKELIHOOD );
-
         Chromosome result =  (Chromosome ) this.clone();
-
         for (int i=0;i<Diofant.GENES_COUNT;++i){
             float randomPercent = Diofant.getRandomFloat(0,100);
             if ( randomPercent < Diofant.MUTATION_LIKELIHOOD ){
@@ -59,53 +54,40 @@ public class Chromosome {
                         +". ( randomPercent =="+randomPercent
                         +" ). Old value:"+oldValue +"; New value:"+newValue );
                 result.getGenes()[i] = newValue;
-
-
             }
         }
         Diofant.log( "Finished mutateWithGivenLikelihood()...." );
         return result;
     }
 
-    /*
-       This crossover gives birth to 2 children
-    */
+    //This crossover gives birth to 2 children
     public Chromosome[] doubleCrossover(  Chromosome chromosome  ){
-
         Diofant.log( "Starting DOUBLE crossover operation..." );
         Diofant.log( "THIS chromo:"+this );
         Diofant.log( "ARG chromo:"+chromosome );
-
         int crossoverline=getRandomCrossoverLine();
         Chromosome[] result = new Chromosome[2];
         result[0]=new Chromosome();
         result[1]=new Chromosome();
-
         for (int i=0;i<Diofant.GENES_COUNT;++i){
             if ( i<=crossoverline){
                 result[0].getGenes()[i] =  this.getGenes()[i];
                 result[1].getGenes()[i] =  chromosome.getGenes()[i];
-
             }
             else {
                 result[0].getGenes()[i] =  chromosome.getGenes()[i];
                 result[1].getGenes()[i] =  this.getGenes()[i];
             }
-
         }
-
         Diofant.log( "RESULTING chromo #0:\n"+result[0] );
         Diofant.log( "RESULTING chromo #1:\n"+result[1] );
         Diofant.log( "DOUBLE crossover operation is finished..." );
         return result;
-
     }
 
-    /*
-       This crossover gives birth to 1 child.
-        To perform that, it calls doubleCrossover() and then
-         randomly selects one of the 2 children.
-    */
+    //This crossover gives birth to 1 child.
+    //To perform that, it calls doubleCrossover() and then
+    //randomly selects one of the 2 children.
     public Chromosome singleCrossover(  Chromosome chromosome  ){
         Diofant.log( "Starting SINGLE crossover operation...Calling DOUBLE crossover first...." );
         Chromosome[] children = doubleCrossover(  chromosome  ) ;
@@ -115,57 +97,42 @@ public class Chromosome {
         Diofant.log( "SINGLE crossover operation is finished" );
         return children[childNumber];
     }
-    /*
-     * Checks if "this" is equal to the arg. object, Not sure if this method is ever used.
-     * */
-    public boolean equals( Chromosome chromosome ){
 
+    // Checks if "this" is equal to the arg. object, Not sure if this method is ever used.
+    public boolean equals( Chromosome chromosome ){
         for ( int i = 0; i<Diofant.GENES_COUNT;++i ){
             if ( this.genes[i]!=chromosome.genes[i]  ){
                 return false;
             }
         }
         return true;
-
     }
 
-    /*
-     * String representation of the object
-     * */
+    // String representation of the object
     public String toString(){
-
         StringBuffer result = new StringBuffer();
-
         result.append(  "Genes: ("  ) ;
-
         for ( int i = 0; i<Diofant.GENES_COUNT;++i ){
             result.append(  ""+genes[i]  ) ;
             result.append(  i<Diofant.GENES_COUNT-1 ? ", ":""   );
-
         }
         result.append(  ")\n"  ) ;
         result.append( "Fitness:" + fitness+"\n" );
         result.append( "Likelihood:" + likelihood+"\n" );
         return result.toString();
-
-
     }
 
-    /*
-     * Returns number of gene AFTER which comes the crossover line
-     * e.g. (1,20,3,4)
-     * Position after "1" is 0
-     * Position after "20" is 1 etc.
-     * */
+    // Returns number of gene AFTER which comes the crossover line
+    // e.g. (1,20,3,4)
+    // Position after "1" is 0
+    // Position after "20" is 1 etc.
     private static int getRandomCrossoverLine(){
         int line = Diofant.getRandomInt(0, Diofant.GENES_COUNT - 2);  //-2 because we dn't need the position after the last gene
         Diofant.log("Generated random CrossoverLine at position "+line);
         return line;
     }
 
-    /*
-     * IMPORTANT NOTE: check if it works. Espessially "resultGenes=genes.clone()" part
-     * */
+    // IMPORTANT NOTE: check if it works. Espessially "resultGenes=genes.clone()" part
     protected Object clone()  {
         Chromosome resultChromosome = new Chromosome() ;
         resultChromosome.setFitness(  this.getFitness() );
@@ -176,12 +143,8 @@ public class Chromosome {
         return resultChromosome;
     }
 
-    /*
-     * main method :) :) :) :) :) :)
-     * For testing only
-     * */
+    //For testing only
     public static void main(String[] args) throws Exception{
-
         System.out.print( Integer.toBinaryString( 2 )  );
 /*
         Chromosome  c1 = new Chromosome();

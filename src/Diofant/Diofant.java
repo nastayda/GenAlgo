@@ -1,5 +1,13 @@
 package Diofant;
 
+import java.io.*;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 public class Diofant {
@@ -22,7 +30,7 @@ public class Diofant {
     //min. value a gene has
     public static final int GENE_MIN = 1;
 
-    //		max. value a gene has
+    //max. value a gene has
     public static final int GENE_MAX = 30;
 
     //likelihood (in percent) of the mutation
@@ -36,9 +44,7 @@ public class Diofant {
     //array of individuals (Chromosomes)
     private Chromosome population[] = new Chromosome[ Diofant.POPULATION_COUNT ];
 
-    /*
-     * Iterate through all chromosomes and fill their "fitness" property
-     * */
+    //Iterate through all chromosomes and fill their "fitness" property
     private int fillChromosomesWithFitnesses( ) {
         log( "***Started to create FITNESSES for all chromosomes. " );
         for (int i = 0; i < POPULATION_COUNT; ++i) {
@@ -58,17 +64,13 @@ public class Diofant {
         return TARGET_NOT_REACHED_FLAG;
     }
 
-    /*
-     * Function of the equalization we're solving
-     * */
+    // Function of the equalization we're solving
     public static int function( int a, int b, int c, int d ) {
         return a + 2 * b + 3 * c + 4 * d;
     }
 
-    /*
-     * Returns sum of fitnesses of all chromosomes.
-     * This value is used when calculating likelihood
-     * */
+    // Returns sum of fitnesses of all chromosomes.
+    // This value is used when calculating likelihood
     private float getAllFitnessesSum( ) {
         float allFitnessesSum = .0F;
         for (int i = 0; i < POPULATION_COUNT; ++i) {
@@ -77,9 +79,7 @@ public class Diofant {
         return allFitnessesSum;
     }
 
-    /*
-     * Iterate through all chromosomes and fill their "likelihood" property
-     * */
+    // Iterate through all chromosomes and fill their "likelihood" property
     private void fillChromosomeWithLikelihoods( ) {
         float allFitnessesSum = getAllFitnessesSum( );
         log( "***Started to create LIKELIHOODS for all chromosomes. allFitnessesSum=" + allFitnessesSum );
@@ -101,9 +101,7 @@ public class Diofant {
         log( "***Finished to create LIKELIHOODS for all chromosomes. " );
     }
 
-    /*
-     * Prints all chromosomes to the log using toString() of Chromosome objects
-     * */
+    // Prints all chromosomes to the log using toString() of Chromosome objects
     private void printAllChromosomes( ) {
         log( "Here is the current state of all chromosomes:" );
         for (int i = 0; i < POPULATION_COUNT; ++i) {
@@ -112,41 +110,36 @@ public class Diofant {
         }
     }
 
-    /*
-     * Writes a string to the log
-     * */
-    public static void log( String message ) {
+    // Writes a string to the log
+    public static void log( String message )  {
         //System.out.println( message );
+            try {
+                Files.write(Paths.get("log.txt"), (message+"\n").getBytes(), StandardOpenOption.APPEND);
+            }catch (IOException e) {
+                //exception handling left as an exercise for the reader
+            }
     }
 
-    /*
-     * Returns random integer number between min and max ( all included :)  )
-     * */
+    // Returns random integer number between min and max ( all included :)  )
     public static int getRandomInt( int min, int max ) {
         Random randomGenerator;
         randomGenerator = new Random( );
         return randomGenerator.nextInt( max + 1 ) + min;
     }
 
-    /*
-     * Returns random float number between min (included) and max ( NOT included :)  )
-     * */
+    // Returns random float number between min (included) and max ( NOT included :)  )
     public static float getRandomFloat( float min, float max ) {
         return (float) ( Math.random( ) * max + min );
     }
 
 
-    /*
-     * Returns a correct random value for a gene
-     * */
+    // Returns a correct random value for a gene
     public static int getRandomGene( ) {
         return getRandomInt( GENE_MIN, GENE_MAX );
     }
 
 
-    /*
-     * Fills a chromosome with random genes.
-     * */
+    // Fills a chromosome with random genes.
     private void fillChromosomeWithRandomGenes( Chromosome chromosome ) {
         log( "Filling chromosome with random genes...." );
         for (int i = 0; i < GENES_COUNT; ++i) {
@@ -159,9 +152,7 @@ public class Diofant {
     }
 
 
-    /*
-     * Creates an initial population
-     * */
+    // Creates an initial population
     private void createInitialPopulation( ) {
         log( "*** Started creating initial population..." );
         for (int i = 0; i < POPULATION_COUNT; ++i) {
@@ -173,12 +164,10 @@ public class Diofant {
 
     }
 
-    /*
-     * Returns pairs for the crossover operations.
-     * [0][0] with [0][1]
-     * [1][0] with [1][1]
-     * etc. etc.
-     * */
+    // Returns pairs for the crossover operations.
+     // [0][0] with [0][1]
+     // [1][0] with [1][1]
+    // etc. etc.
     private int[][] getPairsForCrossover( ) {
         log( "*** Started looking for pairs for crossover" );
 
@@ -212,10 +201,8 @@ public class Diofant {
         return pairs;
     }
 
-    /*
-     * For testing only.
-     * Check if the individuals selected for crossover are really the best :)
-     * */
+    // For testing only.
+     // Check if the individuals selected for crossover are really the best :)
     private void analizePairs( int[][] pairs ) {
         log( "*** Started analyzing totals (for testing only)" );
 
@@ -243,10 +230,8 @@ public class Diofant {
 
     }
 
-    /*
-     * Returns number of chromosome in population[] array
-     * corrresponding to the randomly generated number rand
-     * */
+    // Returns number of chromosome in population[] array
+    // corrresponding to the randomly generated number rand
     private int getChromosomeNumberForThisRand( float rand ) {
 
         //looks like a little optimiztion would be great here
@@ -298,10 +283,8 @@ public class Diofant {
         this.population = population;
     }
 
-    /*
-     * main method :) :) :) :) :) :)
-     * */
-    public static void main( String[] args ) {
+
+    public static void main( String[] args ) throws IOException {
         log( "main() is started" );
         log( "POPULATION_COUNT=" + POPULATION_COUNT );
         log( "GENES_COUNT=" + GENES_COUNT );
@@ -310,32 +293,23 @@ public class Diofant {
 
         long iterationsNumber = 0;
         do {
-
             int fillingWithFitnessesResult = diofant.fillChromosomesWithFitnesses( );
-
             //if a result was found... print results and finish the program
             if (fillingWithFitnessesResult != TARGET_NOT_REACHED_FLAG) {
                 System.out.println( "Solution is found: " + diofant.getPopulation( )[ fillingWithFitnessesResult ] );
                 return;
             }
-
             diofant.fillChromosomeWithLikelihoods( );
             diofant.printAllChromosomes( );
             int[][] pairs = diofant.getPairsForCrossover( );
             diofant.analizePairs( pairs );
-
-
             Chromosome nextGeneration[] = new Chromosome[ Diofant.POPULATION_COUNT ];
-
             nextGeneration = diofant.performCrossoverAndMutationForThePopulationAndGetNextGeneration( pairs );
-
             diofant.setPopulation( nextGeneration );
-
             System.out.println( "-=-=========== Finished iteration #" + iterationsNumber );
         } while (iterationsNumber++ < MAX_ITERATIONS);
 
         System.out.println( "SOLUTION NOT FOUND. Sad but true..." );
-
 
     }
 }
