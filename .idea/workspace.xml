@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8176b67c-c6e1-4292-b4c7-1d5713956e73" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GenAlgo/com/company/Chromosome.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GenAlgo/com/company/Diofant.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GenAlgo/com/company/Main.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Diofant/Chromosome.java" afterPath="$PROJECT_DIR$/src/Diofant/Chromosome.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Diofant/Diofant.java" afterPath="$PROJECT_DIR$/src/Diofant/Diofant.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GenAlgo/help-files/log.txt" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/log.txt" afterPath="$PROJECT_DIR$/log.txt" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,11 +15,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Diofant.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Diofant.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Diofant/Diofant.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="163">
-              <caret line="114" column="40" lean-forward="false" selection-start-line="114" selection-start-column="40" selection-end-line="114" selection-end-column="40" />
+            <state relative-caret-position="401">
+              <caret line="125" column="40" lean-forward="true" selection-start-line="125" selection-start-column="40" selection-end-line="125" selection-end-column="40" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#fillChromosomesWithFitnesses#0;class#Diofant#0" expanded="false" />
@@ -36,11 +33,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="log.txt" pinned="false" current-in-tab="false">
+      <file leaf-file-name="log.txt" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/log.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="23" lean-forward="true" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
+            <state relative-caret-position="306">
+              <caret line="96" column="110" lean-forward="true" selection-start-line="96" selection-start-column="110" selection-end-line="96" selection-end-column="110" />
               <folding />
             </state>
           </provider>
@@ -49,9 +46,12 @@
       <file leaf-file-name="Chromosome.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Diofant/Chromosome.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
+            <state relative-caret-position="1">
               <caret line="39" column="93" lean-forward="true" selection-start-line="39" selection-start-column="93" selection-end-line="39" selection-end-column="93" />
-              <folding />
+              <folding>
+                <element signature="method#mutateWithGivenLikelihood#0;class#Chromosome#0" expanded="false" />
+                <element signature="method#singleCrossover#0;class#Chromosome#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -82,8 +82,8 @@
         <option value="$PROJECT_DIR$/src/com/company/Diofant.java" />
         <option value="$PROJECT_DIR$/src/Diofant/Chromosome.java" />
         <option value="$PROJECT_DIR$/src/help-files/log.txt" />
-        <option value="$PROJECT_DIR$/log.txt" />
         <option value="$PROJECT_DIR$/src/Diofant/Diofant.java" />
+        <option value="$PROJECT_DIR$/log.txt" />
       </list>
     </option>
   </component>
@@ -373,26 +373,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Diofant/Chromosome.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="39" column="93" lean-forward="true" selection-start-line="39" selection-start-column="93" selection-end-line="39" selection-end-column="93" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/log.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="23" lean-forward="true" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Diofant/Diofant.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="114" column="40" lean-forward="false" selection-start-line="114" selection-start-column="40" selection-end-line="114" selection-end-column="40" />
+        <state relative-caret-position="401">
+          <caret line="125" column="40" lean-forward="true" selection-start-line="125" selection-start-column="40" selection-end-line="125" selection-end-column="40" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#fillChromosomesWithFitnesses#0;class#Diofant#0" expanded="false" />
@@ -402,6 +386,25 @@
             <element signature="e#4832#4833#0" expanded="true" />
             <element signature="e#4985#4986#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Diofant/Chromosome.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1">
+          <caret line="39" column="93" lean-forward="true" selection-start-line="39" selection-start-column="93" selection-end-line="39" selection-end-column="93" />
+          <folding>
+            <element signature="method#mutateWithGivenLikelihood#0;class#Chromosome#0" expanded="false" />
+            <element signature="method#singleCrossover#0;class#Chromosome#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/log.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="96" column="110" lean-forward="true" selection-start-line="96" selection-start-column="110" selection-end-line="96" selection-end-column="110" />
+          <folding />
         </state>
       </provider>
     </entry>
