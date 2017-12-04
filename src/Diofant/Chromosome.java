@@ -115,7 +115,6 @@ public class Chromosome {
         Diofant.log( "SINGLE crossover operation is finished" );
         return children[childNumber];
     }
-
     /*
      * Checks if "this" is equal to the arg. object, Not sure if this method is ever used.
      * */
